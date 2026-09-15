@@ -12,6 +12,9 @@ const resolvers = {
       if (!args.genre && !args.author) {
         return Book.find({}).populate("author");
       }
+      if (!args.genre) {
+        return Book.find({}).populate("author"); //just returns all books, must be fixed
+      }
       if (args.genre) {
         return Book.find({ genres: args.genre }).populate("author");
       }
