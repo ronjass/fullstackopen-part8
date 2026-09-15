@@ -3,6 +3,7 @@ import Authors from "./components/Authors";
 import Books from "./components/Books";
 import NewBook from "./components/NewBook";
 import LoginForm from "./components/LoginForm";
+import Recommendations from "./components/Recommendations";
 import { useApolloClient, useQuery } from "@apollo/client/react";
 
 const App = ({ setError }) => {
@@ -14,6 +15,7 @@ const App = ({ setError }) => {
     setToken(null);
     localStorage.clear();
     client.resetStore();
+    setPage("authors");
   };
 
   return (
@@ -27,6 +29,9 @@ const App = ({ setError }) => {
         {token ? (
           <>
             <button onClick={() => setPage("add")}>add book</button>
+            <button onClick={() => setPage("recommendations")}>
+              recommendations
+            </button>
             <button onClick={onLogout}>logout</button>
           </>
         ) : (
@@ -39,6 +44,8 @@ const App = ({ setError }) => {
       <Books show={page === "books"} />
 
       <NewBook show={page === "add"} token={token} />
+
+      <Recommendations show={page === "recommendations"} token={token} />
 
       <LoginForm
         show={page === "login"}

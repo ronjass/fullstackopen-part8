@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client/react";
-import { LOGIN } from "../queries";
+import { LOGIN, USER } from "../queries";
+import { useApolloClient } from "@apollo/client/react";
 
 const LoginForm = ({ setError, setToken, setPage, show }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const client = useApolloClient();
 
   const [login] = useMutation(LOGIN, {
     onCompleted: (data) => {
       const token = data.login.value;
       setToken(token);
       localStorage.setItem("books-user-token", token);
+      client.resetStore();
       setUsername("");
       setPassword("");
       setPage("authors");
