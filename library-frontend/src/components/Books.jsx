@@ -10,14 +10,14 @@ const Books = (props) => {
   });
 
   const allBooksResult = useQuery(ALL_BOOKS, {
-    variables: { selectedGenre: null },
+    variables: { genre: null },
   });
 
   if (!props.show) {
     return null;
   }
 
-  if (result.loading) {
+  if (result.loading || allBooksResult.loading) {
     return <div>loading...</div>;
   }
 
@@ -52,7 +52,7 @@ const Books = (props) => {
         </tbody>
       </table>
 
-      <h2>filter books by genre</h2>
+      <h2>filter by genre</h2>
       {genres.map((genre) => (
         <li key={genre}>
           <button onClick={() => setGenre(genre)}>{genre}</button>

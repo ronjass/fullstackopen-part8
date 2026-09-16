@@ -28,7 +28,7 @@ const Recommendations = (props) => {
       <h2>recommendations</h2>
       {genre && (
         <p>
-          books in your favourite genre <strong>{genre}</strong>
+          books in your favorite genre <strong>{genre}</strong>
         </p>
       )}
 

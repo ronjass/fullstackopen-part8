@@ -60,6 +60,7 @@ const Authors = ({ token, show }) => {
             <label>
               name{" "}
               <select
+                name="name"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               >
@@ -72,13 +73,15 @@ const Authors = ({ token, show }) => {
               </select>
             </label>
             <div>
-              born{" "}
-              <input
-                value={born}
-                onChange={({ target }) => setBorn(target.value)}
-              />
+              <label>
+                born{" "}
+                <input
+                  value={born}
+                  onChange={({ target }) => setBorn(target.value)}
+                />
+              </label>
+              <button type="submit">update author</button>
             </div>
-            <button type="submit">update author</button>
           </form>
         </>
       )}
